@@ -24,11 +24,13 @@ module Logic_tb();
 
 reg clk,ID0,ID1,ID2,ID3,ID4,ID5,ID6,ID7;
 wire [3:0]grant;
+//wire [2:0]state, nextstate;
+//wire X;
 
 Logic UUT(clk, ID0, ID1, ID2, ID3, ID4, ID5, ID6, ID7, grant);
 
 initial begin
-clk=0;
+clk=1;
 ID0=0;
 ID1=0;
 ID2=0;
@@ -43,23 +45,32 @@ always
 #5 clk=~clk;
 
 initial begin
+    #10;
     ID7 = 1;
-    ID4 = 1;
+    ID4 = 0;
     #10;
     ID7 = 0;
     ID4 = 0;
+    #10
     ID2 = 1;
-    ID3 = 1;
+    ID4 = 1;
     #10;
     ID2 = 0;
-    ID3 = 0;
+    ID4 = 0;
+    ID7 = 1;
     #10;
+    ID7 = 0;
     ID2 = 1;
-    ID3 = 1;
+    ID4 = 1;
     #10;
     ID2 = 0;
-    ID3 = 0;
+    ID4 = 0;
     #10;
+    ID3 = 1;
+    ID1 = 1;
+    #10;
+    ID3 = 0;
+    ID1 = 0;
     
 end
 endmodule
